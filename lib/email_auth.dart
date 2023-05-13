@@ -2,7 +2,7 @@
 /// There are no static methods like the previous one, and they are all instance members
 ///
 /// ------------- Remote server config --------------
-/// requires a auth.config.dart pacakge
+/// requires a auth.config.dart package
 /// should follow the variable conventions as follows :
 /// var remoteServerConfig = {"server" : "serverUrl", "serverKey" : "Key generted from the email-auth-node package"}
 /// You can pass "remoteServerConfig" to the emailAuth instance.config() and generate them.
@@ -156,6 +156,7 @@ class EmailAuth {
       } else if (_validRemote) {
         http.Response _response = await http.get(Uri.parse(
             "${this._server}/dart/auth/$recipientMail?CompanyName=${this.sessionName}&key=${this._serverKey}&otpLength=$otpLength"));
+        print(_response);
         return _convertData(_response, recipientMail);
       }
       return false;
